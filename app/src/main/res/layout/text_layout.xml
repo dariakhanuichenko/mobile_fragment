@@ -15,7 +15,8 @@
         android:layout_height="97dp"
         android:ems="10"
         android:hint="Input your text"
-        android:typeface="serif" />
+        android:typeface="serif"
+        android:gravity ="center_horizontal"/>
 
     <Button
         android:id="@+id/button"
@@ -23,19 +24,22 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:onClick="onClickSave"
-        android:text="@android:string/ok" />
+        android:text="@android:string/ok"
+        android:gravity ="center_horizontal"/>
 
     <Button
         android:id="@+id/cancel"
         android:layout_width="105dp"
         android:layout_height="wrap_content"
         android:onClick="onClickCancel"
-        android:text="@android:string/cancel" />
+        android:text="@android:string/cancel"
+        android:gravity ="center_horizontal"/>
 
     <Button
         android:id="@+id/viewAll"
         android:layout_width="106dp"
         android:layout_height="wrap_content"
         android:onClick="onClickViewAll"
-        android:text="GET ALL" />
+        android:text="GET ALL"
+        android:gravity ="center_horizontal"/>
 </LinearLayout>

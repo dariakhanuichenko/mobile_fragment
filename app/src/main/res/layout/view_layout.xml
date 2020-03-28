@@ -8,7 +8,9 @@
         android:id="@+id/result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:gravity ="center_horizontal"/>
+
 
     <TextView
         android:id="@+id/error"
@@ -16,7 +18,9 @@
         android:layout_height="106dp"
         android:shadowColor="@color/colorPrimaryDark"
         android:textColor="@color/colorAccent"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:gravity ="center_horizontal"/>
+
 
     <TextView
         android:id="@+id/success"
@@ -25,19 +29,10 @@
         android:shadowColor="@color/colorPrimaryDark"
         android:textColor="#4CAF50"
         android:textColorLink="#4CAF50"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:gravity ="center_horizontal"/>
 
-    <TextView
-        android:id="@+id/allRows"
-        android:layout_width="match_parent"
-        android:layout_height="106dp" />
 
-    <TextView
-        android:id="@+id/emptyDB"
-        android:layout_width="match_parent"
-        android:layout_height="106dp"
-        android:shadowColor="@color/colorPrimaryDark"
-        android:textColor="@color/colorAccent"
-        android:textSize="24sp" />
+
 
 </LinearLayout>
