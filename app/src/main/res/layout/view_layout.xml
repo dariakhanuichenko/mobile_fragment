@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="82dp"></Spinner>
     <TextView
         android:id="@+id/result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="match_parent"
-        android:layout_height="97dp"
-        android:ems="10"
-        android:hint="Input your text"
-        android:typeface="serif" />
 
     <TextView
         android:id="@+id/error"
@@ -28,4 +16,6 @@
         android:shadowColor="@color/colorPrimaryDark"
         android:textColor="@color/colorAccent"
         android:textSize="24sp" />
+
+
 </LinearLayout>

@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,14 +21,15 @@ import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TextViewFragment extends Fragment {
+public class TextFragment extends Fragment implements View.OnClickListener{
 
-    private TextView inputTextView;
+//    private TextView inputTextView;
     private Spinner spinner;
     private ArrayAdapter<String> adapter;
-    private TextView errorTextView;
+//    private TextView errorTextView;
     private EditText editText;
     private List<TypefaceWithFontName> fonts;
+    private StringWithTypeface phrase;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -40,7 +41,6 @@ public class TextViewFragment extends Fragment {
         fonts.add(new TypefaceWithFontName(ResourcesCompat.getFont(root.getContext(), R.font.helvetica), "Helvetica"));
         fonts.add(new TypefaceWithFontName(Typeface.SANS_SERIF, "Sans Serif"));
 
-        System.out.println("[[[["+ fonts.get(3).getFontName() + "]]]]");
         return fonts;
     }
 
@@ -48,7 +48,6 @@ public class TextViewFragment extends Fragment {
         List<String> names = new ArrayList<String>();
         for (TypefaceWithFontName font : fonts) {
             names.add(font.getFontName());
-            System.out.println(" !!!! " + font.getFont().getStyle());
         }
         return names;
     }
@@ -59,15 +58,21 @@ public class TextViewFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.text_view_layout, container, false);
-        inputTextView = (TextView) root.findViewById(R.id.result);
+        View root = inflater.inflate(R.layout.text_layout, container, false);
+        phrase = new StringWithTypeface(root);
+//        inputTextView = (TextView) root.findViewById(R.id.result);
 
         fonts = this.getFonts(root);
         spinner = root.findViewById(R.id.spinner);
-        errorTextView = root.findViewById(R.id.error);
+//        errorTextView = root.findViewById(R.id.error);
         editText = root.findViewById(R.id.editText1);
         adapter = new ArrayAdapter<>(root.getContext(), android.R.layout.simple_spinner_item, getFontNames(fonts));
 
+        Button create = root.findViewById(R.id.button);
+        Button cancel = root.findViewById(R.id.cancel);
+
+        create.setOnClickListener(this);
+        cancel.setOnClickListener(this);
         // адаптер
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -87,8 +92,8 @@ public class TextViewFragment extends Fragment {
                 for (TypefaceWithFontName font : fonts) {
 
                     if (spinner.getSelectedItem().toString().equals(font.getFontName())) {
-                        inputTextView.setTypeface(font.getFont());
-                        inputTextView.setTextSize(50);
+                        phrase.setTypeface(font.getFont());
+//                        inputTextView.setTextSize(50);
                         break;
                     }
                 }
@@ -102,25 +107,34 @@ public class TextViewFragment extends Fragment {
 
     }
 
-    public void setText(int buttonIndex) {
-
-        String str = editText.getText().toString();
-
-        if (str.length() != 0) {
-
-            if (buttonIndex == 1) {
-                inputTextView.setText(str);
-
-            } else if (buttonIndex == 2) {
-                inputTextView.setText("");
-                editText.setText("");
-                errorTextView.setText("");
+    private int translateIdToIndex( int button_id) {
+        phrase.setPhrase(editText.getText().toString());
+        int index = -1;
+        if(button_id == R.id.button ){
+            if( ! phrase.getPhrase().isEmpty()){
+                // строчка не пустая
+                index =1;
             }
-
-        } else if ((buttonIndex == 1 || buttonIndex == 2)) {
-            errorTextView.setText("Input string please");
+            // строчка пустая
+            else index =-1;
+        } else if ( button_id == R.id.cancel){
+            //отменить
+            index = 2;
         }
+
+        return index;
     }
 
+    @Override
+    public void onClick(View v) {
+        int buttonIndex = translateIdToIndex(v.getId());
+
+        TextFragment.OnSelectedButtonListener listener = (TextFragment.OnSelectedButtonListener) getActivity();
+        listener.onButtonSelected(buttonIndex, phrase);
+    }
+
+    public interface OnSelectedButtonListener {
+        void onButtonSelected(int buttonIndex, StringWithTypeface phrase);
+    }
 
 }

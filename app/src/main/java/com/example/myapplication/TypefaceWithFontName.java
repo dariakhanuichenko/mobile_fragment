@@ -7,6 +7,7 @@ public class TypefaceWithFontName {
     private Typeface font;
     private String fontName;
 
+
     public TypefaceWithFontName(Typeface font, String fontName) {
         this.font = font;
         this.fontName = fontName;

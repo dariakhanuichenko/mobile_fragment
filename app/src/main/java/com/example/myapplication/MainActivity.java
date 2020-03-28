@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 
-public class MainActivity extends AppCompatActivity implements ButtonFragment.OnSelectedButtonListener  {
+public class MainActivity extends AppCompatActivity implements TextFragment.OnSelectedButtonListener  {
 
 
 
@@ -21,16 +21,16 @@ public class MainActivity extends AppCompatActivity implements ButtonFragment.On
     }
 
     @Override
-    public void onButtonSelected(int buttonIndex) {
+    public void onButtonSelected(int buttonIndex, StringWithTypeface phrase) {
         // подключаем FragmentManager
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         // Получаем ссылку на второй фрагмент по ID
-        TextViewFragment fragment2 = (TextViewFragment) fragmentManager
-                .findFragmentById(R.id.text_view_layout);
+        ViewFragment fragment2 = (ViewFragment) fragmentManager
+                .findFragmentById(R.id.button_layout);
 
         // Выводим нужную информацию
         if (fragment2 != null)
-            fragment2.setText(buttonIndex);
+            fragment2.setText(buttonIndex, phrase);
     }
 }

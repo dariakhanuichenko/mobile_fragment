@@ -11,19 +11,19 @@
 
     <fragment
         android:id="@+id/text_view_layout"
-        android:name="com.example.myapplication.TextViewFragment"
+        android:name="com.example.myapplication.TextFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        tools:layout="@layout/text_view_layout" />
+        tools:layout="@layout/text_layout" />
 
     <fragment
         android:id="@+id/button_layout"
-        android:name="com.example.myapplication.ButtonFragment"
+        android:name="com.example.myapplication.ViewFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        tools:layout="@layout/button_layout" />
+        tools:layout="@layout/view_layout" />
 
 
 </LinearLayout>
