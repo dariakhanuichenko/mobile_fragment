@@ -23,10 +23,8 @@ import java.util.List;
 
 public class TextFragment extends Fragment implements View.OnClickListener{
 
-//    private TextView inputTextView;
     private Spinner spinner;
     private ArrayAdapter<String> adapter;
-//    private TextView errorTextView;
     private EditText editText;
     private List<TypefaceWithFontName> fonts;
     private StringWithTypeface phrase;
@@ -58,27 +56,27 @@ public class TextFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+
         View root = inflater.inflate(R.layout.text_layout, container, false);
         phrase = new StringWithTypeface(root);
-//        inputTextView = (TextView) root.findViewById(R.id.result);
+
 
         fonts = this.getFonts(root);
         spinner = root.findViewById(R.id.spinner);
-//        errorTextView = root.findViewById(R.id.error);
         editText = root.findViewById(R.id.editText1);
         adapter = new ArrayAdapter<>(root.getContext(), android.R.layout.simple_spinner_item, getFontNames(fonts));
 
         Button create = root.findViewById(R.id.button);
         Button cancel = root.findViewById(R.id.cancel);
+        Button getAll = root.findViewById(R.id.viewAll);
 
         create.setOnClickListener(this);
         cancel.setOnClickListener(this);
+        getAll.setOnClickListener(this);
         // адаптер
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(adapter);
-        // заголовок
-//        spinner.setPrompt("Title");
         // выделяем элемент
         spinner.setSelection(2);
 
@@ -93,7 +91,6 @@ public class TextFragment extends Fragment implements View.OnClickListener{
 
                     if (spinner.getSelectedItem().toString().equals(font.getFontName())) {
                         phrase.setTypeface(font.getFont());
-//                        inputTextView.setTextSize(50);
                         break;
                     }
                 }
@@ -119,7 +116,11 @@ public class TextFragment extends Fragment implements View.OnClickListener{
             else index =-1;
         } else if ( button_id == R.id.cancel){
             //отменить
+            editText.setText("");
             index = 2;
+        } else if (button_id == R.id.viewAll){
+            //показать все с бд
+            index = 3;
         }
 
         return index;
