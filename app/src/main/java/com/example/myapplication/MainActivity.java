@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements TextFragment.OnSe
         // Получаем ссылку на второй фрагмент по ID
         ViewFragment fragment2 = (ViewFragment) fragmentManager
                 .findFragmentById(R.id.button_layout);
-
+// TODO: db
         // Выводим нужную информацию
         if (fragment2 != null)
             fragment2.setText(buttonIndex, phrase);

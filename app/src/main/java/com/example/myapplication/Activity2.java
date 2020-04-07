@@ -23,7 +23,7 @@ public class Activity2 extends AppCompatActivity {
         emptyDBTextView = this.findViewById(R.id.emptyDB);
         getAllRows();
     }
-
+// TODO: перенести в хелпер
     private void getAllRows() {
         SQLiteDatabase database = dbHelper.getWritableDatabase();
         Cursor cursor = database.query(DBHelper.TABLE_NAME, null, null, null, null, null, null);

@@ -37,7 +37,6 @@ public class ViewFragment extends Fragment {
         ContentValues contentValues = new ContentValues();
 
         if (buttonIndex == -1) {
-            database.delete(DBHelper.TABLE_NAME, null, null);
             errorTextView.setText("Input string please");
         }
         if (buttonIndex == 1) {
@@ -53,6 +52,7 @@ public class ViewFragment extends Fragment {
         if (buttonIndex == 2) {
             inputTextView.setText("");
             errorTextView.setText("");
+            successTextView.setText("");
         }
         dbHelper.close();
     }
